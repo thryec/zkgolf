@@ -1,0 +1,9 @@
+# private reference material (competitor solutions, prompts, API-token notes)
+local/
+
+# working build trees (zk-golf-challenges clone + parallel copy, ~14GB of .lake artifacts)
+zk-golf-challenges/
+wt-addmany/
+
+.DS_Store
+.claude/
