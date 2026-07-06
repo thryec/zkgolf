@@ -76,8 +76,27 @@ solutions/{sha256,keccak-f1600,rsa-4096}/   the circuits
 scripts/                                     identity-search and floor-analysis (Python)
 ```
 
-Build: copy a solution's files into `Solution/<Instance>/` of the
-[challenge harness](https://github.com/zksecurity/zk-golf-challenges) and `lake build`.
+---
+
+## Running
+
+Needs [elan](https://github.com/leanprover/elan) (Lean 4.28.0 is pinned by the harness).
+
+Clone the [challenge harness](https://github.com/zksecurity/zk-golf-challenges), drop a solution
+into its matching instance directory, and build:
+
+```bash
+git clone https://github.com/zksecurity/zk-golf-challenges && cd zk-golf-challenges
+cp /path/to/zkgolf/solutions/sha256/*.lean Solution/SHA256/
+lake build Solution.SHA256.Main Solution.SHA256.Cost
+```
+
+Instance directories: `sha256 → SHA256`, `keccak-f1600 → KeccakF1600`,
+`rsa-4096 → RSASSAPKCS1v15_SHA256_4096_65537`.
+
+`Main.lean` holds the proven `allocations` and `constraints`. A clean build (no `sorry`, axioms
+limited to the config's `permitted_axioms`) is what the zk.golf server checks; RSA and the packed
+SHA round take a few minutes.
 
 ---
 
